@@ -1,10 +1,17 @@
 package programas;
 
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Proyectofinal_lionel {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        // Mostrar fecha y hora actual
+        LocalDateTime ahora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        System.out.println("Registro realizado el: " + ahora.format(formato));
 
         // Solicitar nombre del cliente
         System.out.print("Ingrese el nombre del cliente: ");
@@ -31,4 +38,5 @@ public class Proyectofinal_lionel {
         System.out.println("Promedio de compras    : " + promedioCompras);
     }
 }
+
 
