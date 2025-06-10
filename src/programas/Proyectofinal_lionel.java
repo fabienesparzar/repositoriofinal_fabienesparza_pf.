@@ -5,38 +5,49 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Proyectofinal_lionel {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Mostrar fecha y hora actual
+        // Título del programa
+        System.out.println("===== Registro de Compras del Cliente =====");
+
+        // Registrar fecha y hora actual
         LocalDateTime ahora = LocalDateTime.now();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        System.out.println("Registro realizado el: " + ahora.format(formato));
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        System.out.println("Fecha y hora de registro: " + ahora.format(formato));
 
-        // Solicitar nombre del cliente
+        // Ingreso de datos
         System.out.print("Ingrese el nombre del cliente: ");
-        String nombre = scanner.nextLine();
+        String nombreCliente = scanner.nextLine();
 
-        // Solicitar las tres compras
-        System.out.print("Ingrese el monto de la compra 1: ");
-        double compra1 = scanner.nextDouble();
+        double[] compras = new double[3];
+        for (int i = 0; i < compras.length; i++) {
+            while (true) {
+                System.out.print("Ingrese el monto de la compra " + (i + 1) + ": ");
+                compras[i] = scanner.nextDouble();
+                if (compras[i] < 0) {
+                    System.out.println("⚠️ Error: El monto no puede ser negativo. Intente nuevamente.");
+                } else {
+                    break;
+                }
+            }
+        }
 
-        System.out.print("Ingrese el monto de la compra 2: ");
-        double compra2 = scanner.nextDouble();
-
-        System.out.print("Ingrese el monto de la compra 3: ");
-        double compra3 = scanner.nextDouble();
-
-        // Calcular total y promedio
-        double totalCompras = compra1 + compra2 + compra3;
+        // Cálculos
+        double totalCompras = compras[0] + compras[1] + compras[2];
         double promedioCompras = totalCompras / 3;
 
-        // Mostrar resultados
-        System.out.println("\nRESULTADOS");
-        System.out.println("Cliente: " + nombre);
-        System.out.println("Total compras          : " + totalCompras);
-        System.out.println("Promedio de compras    : " + promedioCompras);
+        // Resultados
+        System.out.println("\n===== Resultados =====");
+        System.out.println("Cliente: " + nombreCliente);
+        System.out.printf("Total de compras: S/ %.2f\n", totalCompras);
+        System.out.printf("Promedio de compras: S/ %.2f\n", promedioCompras);
+        System.out.println("Registro completado correctamente ✅");
+
+        scanner.close();
     }
 }
+
 
 
